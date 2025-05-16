@@ -5,17 +5,14 @@ import ProductCard from "@/components/ProductCard";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Image from "next/image";
-import { useParams } from "next/navigation";
+import { useParams } from "react-router-dom";
 import Loading from "@/components/Loading";
 import { useAppContext } from "@/context/AppContext";
 import React from "react";
 
 const Product = () => {
-
     const { id } = useParams();
-
     const { products, router, addToCart } = useAppContext()
-
     const [mainImage, setMainImage] = useState(null);
     const [productData, setProductData] = useState(null);
 
@@ -58,7 +55,6 @@ const Product = () => {
                                     height={720}
                                 />
                             </div>
-
                         ))}
                     </div>
                 </div>
@@ -136,8 +132,7 @@ const Product = () => {
             </div>
         </div>
         <Footer />
-    </>
-    ) : <Loading />
+    </>) : <Loading />
 };
 
 export default Product;
