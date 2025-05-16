@@ -6,10 +6,11 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './')
+      '@': path.resolve(__dirname, './'),
+      'next/image': path.resolve(__dirname, './src/components/Image.js')
     }
   },
-  esbuild: {
-    loader: 'jsx'
+  optimizeDeps: {
+    exclude: ['next/image']
   }
 })
