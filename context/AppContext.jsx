@@ -1,6 +1,6 @@
 'use client'
 import { productsDummyData, userDummyData } from "@/assets/assets";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router-dom";
 import { createContext, useContext, useEffect, useState } from "react";
 
 export const AppContext = createContext();
@@ -12,7 +12,7 @@ export const useAppContext = () => {
 export const AppContextProvider = (props) => {
 
     const currency = process.env.NEXT_PUBLIC_CURRENCY
-    const router = useRouter()
+    const navigate = useNavigate()
 
     const [products, setProducts] = useState([])
     const [userData, setUserData] = useState(false)
@@ -28,7 +28,6 @@ export const AppContextProvider = (props) => {
     }
 
     const addToCart = async (itemId) => {
-
         let cartData = structuredClone(cartItems);
         if (cartData[itemId]) {
             cartData[itemId] += 1;
@@ -37,11 +36,9 @@ export const AppContextProvider = (props) => {
             cartData[itemId] = 1;
         }
         setCartItems(cartData);
-
     }
 
     const updateCartQuantity = async (itemId, quantity) => {
-
         let cartData = structuredClone(cartItems);
         if (quantity === 0) {
             delete cartData[itemId];
@@ -49,7 +46,6 @@ export const AppContextProvider = (props) => {
             cartData[itemId] = quantity;
         }
         setCartItems(cartData)
-
     }
 
     const getCartCount = () => {
@@ -82,7 +78,7 @@ export const AppContextProvider = (props) => {
     }, [])
 
     const value = {
-        currency, router,
+        currency, navigate,
         isSeller, setIsSeller,
         userData, fetchUserData,
         products, fetchProductData,
