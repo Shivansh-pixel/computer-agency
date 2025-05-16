@@ -1,12 +1,10 @@
-"use client"
 import React from "react";
-import { assets} from "@/assets/assets";
-import Link from "next/link"
+import { assets } from "@/assets/assets";
+import { Link } from "react-router-dom";
 import { useAppContext } from "@/context/AppContext";
-import Image from "next/image";
+import Image from "@/src/components/Image";
 
 const Navbar = () => {
-
   const { isSeller, router } = useAppContext();
 
   return (
@@ -18,21 +16,20 @@ const Navbar = () => {
         alt="logo"
       />
       <div className="flex items-center gap-4 lg:gap-8 max-md:hidden">
-        <Link href="/" className="hover:text-gray-900 transition">
+        <Link to="/" className="hover:text-gray-900 transition">
           Home
         </Link>
-        <Link href="/all-products" className="hover:text-gray-900 transition">
+        <Link to="/all-products" className="hover:text-gray-900 transition">
           Shop
         </Link>
-        <Link href="/" className="hover:text-gray-900 transition">
+        <Link to="/" className="hover:text-gray-900 transition">
           About Us
         </Link>
-        <Link href="/" className="hover:text-gray-900 transition">
+        <Link to="/" className="hover:text-gray-900 transition">
           Contact
         </Link>
 
         {isSeller && <button onClick={() => router.push('/seller')} className="text-xs border px-4 py-1.5 rounded-full">Seller Dashboard</button>}
-
       </div>
 
       <ul className="hidden md:flex items-center gap-4 ">
